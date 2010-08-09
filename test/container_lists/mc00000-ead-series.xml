@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ead xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"
+     xmlns:ns2="http://www.w3.org/1999/xlink"
+     xmlns="urn:isbn:1-931666-22-9"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <eadheader>
+    <eadid>mc00000</eadid>
+    <filedesc>
+      <titlestmt>
+        <titleproper>
+          <num></num>
+        </titleproper>
+        <author></author>
+      </titlestmt>
+      <publicationstmt>
+        <publisher>Special Collections Research Center</publisher>
+      </publicationstmt>
+    </filedesc>
+  </eadheader>
+  <archdesc level="subgrp">
+    <did>
+      <unittitle></unittitle>
+    </did>
+    <dsc>
+      <c01 level="series">
+        <did>
+          <unitid>1</unitid>
+          <unittitle>Project Files</unittitle>
+          <unitdate>1951-1978</unitdate>
+        </did>
+        <c02 level="file">
+          <did>
+            <unitid>7732</unitid>
+            <unittitle>Lucey, John and  Mari</unittitle>
+            <unitdate>1977</unitdate>
+            <physdesc>
+              <extent>extent</extent>
+            </physdesc>
+            <note><p>note1</p></note>
+            <note><p>note2</p></note>
+            <container type="box" label="Mixed materials">45</container>
+            <container type="folder" label="Mixed materials">404</container>
+            <container type="item" label="Mixed materials">3</container>
+          </did>
+        </c02>
+        <c02 level="file">
+          <did>
+            <unitid>7801</unitid>
+            <unittitle>Foster, David</unittitle>
+            <unitdate>1979</unitdate>            
+            <note><p>note1</p></note>
+            <note><p>note2</p></note>
+            <container type="box" label="Mixed materials">46</container>
+            <container type="folder" label="Mixed materials">405</container>
+          </did>
+        </c02>
+      </c01>
+      <c01 level="series">
+        <did>
+          <unitid>2</unitid>
+          <unittitle>Professional and Personal</unittitle>
+          <unitdate>1955-1978</unitdate>
+        </did>
+       
+         
+          <c02>
+            <did>
+              <unittitle>Daily Financial Ledger</unittitle>
+              <unitdate>1969-1970</unitdate>
+              <container type="box" label="Mixed materials">58</container>
+              <container type="othertype" label="Mixed materials">550</container>
+            </did>
+          </c02>
+        
+        
+          <c02>
+            <did>
+              <unittitle>Scott, Correspondence Prior to 1959</unittitle>
+              <unitdate>1955-1959</unitdate>
+              <container type="box" label="Mixed materials">58</container>
+              <container type="othertype" label="Mixed materials">551</container>
+            </did>
+          </c02>
+        
+      </c01>
+      <c01 level="series">
+        <did>
+          <unitid>3</unitid>
+          <unittitle>Microfilm</unittitle>
+          <unitdate>1969-1979</unitdate>
+        </did>
+        <c02 level="file">
+          <did>
+            <unitid>4250</unitid>
+            <unittitle>Kenneth McCoy Scott</unittitle>
+            <container type="box" label="Mixed materials">63</container>
+            <container type="othertype" label="Mixed materials">1</container>
+          </did>
+          <scopecontent>
+            <p>Sessions 32-38</p>
+          </scopecontent>
+        </c02>
+      </c01>
+    </dsc>
+  </archdesc>
+</ead>

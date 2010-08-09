@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ead xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"
+     xmlns:ns2="http://www.w3.org/1999/xlink"
+     xmlns="urn:isbn:1-931666-22-9"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <eadheader findaidstatus="Completed" repositoryencoding="iso15511"
+             countryencoding="iso3166-1" dateencoding="iso8601">
+    <eadid></eadid>
+    <filedesc>
+      <titlestmt>
+        <titleproper>
+          Preliminary Inventory to the
+        </titleproper>
+        <author></author>
+      </titlestmt>
+    </filedesc>
+    <profiledesc>
+      <langusage>
+        Finding aid written in
+        <language langcode="eng" encodinganalog="Language">English.</language>
+      </langusage>
+    </profiledesc>
+  </eadheader>
+  <archdesc level="subgrp">
+    <did>
+      <unittitle>Preliminary Inventory to the</unittitle>
+      <unitid></unitid>
+      <langmaterial>
+        <language langcode="eng"/>
+      </langmaterial>
+
+    </did>
+    <accessrestrict >
+      <head>Access to Collection</head>
+      <p>
+        Collection is open for research; access requires at least 24 hours advance notice.
+      </p>
+    </accessrestrict>
+    <dsc>
+
+    </dsc>
+  </archdesc>
+</ead>
+
