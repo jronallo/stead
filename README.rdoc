@@ -16,7 +16,8 @@ to the schema, adding columns, and other editing.  All of this is likely easier,
 faster and more accurate to do in a spreadsheet than trying to do it elsewhere
 retyping the whole thing.
 
-Once
+Once the spreadsheet is ready just save it as a CSV and use the commandline tool
+csv2ead to output an EAD XML document. Import into Archivists' Toolkit.
 
 == Requirements
 
@@ -43,13 +44,17 @@ This class must define a Stead::Extra.run method which accepts an ead and eadid,
 creates a new Stead::Extra object and then does any further processing you'd
 like. See examples/ncsu.rb.
 
+== Support
+
+Please let me know what else you need in such a tool and I'll try to work it in.
+
 == Limitations
 
 - Some of this is still be NCSU and Archivists' Toolkit specific.
 - This tool has only been used a handful of times so far.
 - Only works with this specific schema.
 - Only known to work with series at the c01 level and files at the c02 level.
-Other levels of nesting will not currently work. May work with subseries.
+Other deeper levels of nesting will not currently work. ()May work with subseries.)
 - Column values like series must be duplicated for each row.
 
 == TODO
