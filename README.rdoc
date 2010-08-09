@@ -23,6 +23,9 @@ csv2ead to output an EAD XML document. Import into Archivists' Toolkit.
 
 Ruby
 
+== Installation
+  gem install stead
+
 == Examples that follow the schema
 
 Look in test/contianer_lists/ at the following good examples of the CSV schema:
@@ -53,8 +56,7 @@ Please let me know what else you need in such a tool and I'll try to work it in.
 - Some of this is still be NCSU and Archivists' Toolkit specific.
 - This tool has only been used a handful of times so far.
 - Only works with this specific schema.
-- Only known to work with series at the c01 level and files at the c02 level.
-Other deeper levels of nesting will not currently work. ()May work with subseries.)
+- Only known to work with series at the c01 level and files at the c02 level. Other deeper levels of nesting will not currently work. (May work with subseries.)
 - Column values like series must be duplicated for each row.
 
 == TODO
@@ -64,10 +66,15 @@ Other deeper levels of nesting will not currently work. ()May work with subserie
 - Rdoc.
 - Automate tests of csv2ead tool.
 - Expand the schema to other parts of the EAD?
+- Create webapp where a user can submit a CSV file and get returned the EAD.
 
 == Author
 
 Jason Ronallo
+
+== Thanks
+
+Linda Sellars for creating the initial schema.
 
 == Copyright
 
