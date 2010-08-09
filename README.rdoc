@@ -28,7 +28,7 @@ Ruby
 
 == Examples that follow the schema
 
-Look in test/contianer_lists/ at the following good examples of the CSV schema:
+Look in test/container_lists/ at the following good examples of the CSV schema:
 mc00000_container_list.csv
 mc00000_container_list_no_series.csv
 The order of the columns does not matter, but the headings must be exactly the
