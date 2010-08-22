@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stead}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Ronallo"]
-  s.date = %q{2010-08-08}
+  s.date = %q{2010-08-22}
   s.default_executable = %q{csv2ead}
   s.description = %q{Converts CSV files of a specific schema into EAD XML.}
   s.email = %q{jronallo@gmail.com}
