@@ -228,7 +228,12 @@ module Stead
 
     def csv_to_a
       a = []
-      FasterCSV.parse(csv, :headers => :first_row) do |row|
+      if CSV.const_defined? :Reader
+        csv_class = FasterCSV # old CSV was loaded
+      else
+        csv_class = CSV # use CSV from 1.9
+      end
+      csv_class.parse(csv, :headers => :first_row) do |row|
         a << row.to_hash
       end
       if a.first.keys.include?(nil)

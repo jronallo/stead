@@ -62,6 +62,13 @@ Please let me know what else you need in such a tool and I'll try to work it in.
 - Only known to work with series at the c01 level and files at the c02 level. Other deeper levels of nesting will not currently work. (May work with subseries.)
 - Column values like series must be duplicated for each row.
 
+== Ruby versions
+
+Tested with the following Rubies:
+- 1.8.7-p249
+- 1.8.7-p302
+- 1.9.2-p0
+
 == TODO
 
 - More tests (though there are already lots of tests).
