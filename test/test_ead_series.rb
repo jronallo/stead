@@ -37,6 +37,24 @@ class TestSteadEadSeries < Test::Unit::TestCase
     end
   end
 
+  def test_has_controlaccess
+    assert_equal 1, @generated_ead.xpath('//xmlns:c02/xmlns:controlaccess').length
+  end
+
+  def test_has_controlaccess_geogname
+    geonames = @generated_ead.xpath('//xmlns:c02/xmlns:controlaccess/xmlns:geogname')
+    assert_equal 1, geonames.length
+    assert_equal 'Raleigh (N.C.)', geonames.first.content
+    assert_equal 'lcnaf', geonames.first['source']
+  end
+
+  def test_has_controlaccess_corpname
+    corpnames = @generated_ead.xpath('//xmlns:c02/xmlns:controlaccess/xmlns:corpname')
+    assert_equal 1, corpnames.length
+    assert_equal 'corpname', corpnames.first.content
+    assert_equal 'corpname_source', corpnames.first['source']
+  end
+
 
 end
 

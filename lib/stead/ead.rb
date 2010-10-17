@@ -63,6 +63,7 @@ module Stead
         add_containers(cp, did)
         add_scopecontent(cp, did)
         add_accessrestrict(cp, did)
+        add_controlaccess(cp, c)
         add_file_component_part(cp, c)
       end
       begin
@@ -180,6 +181,25 @@ module Stead
           container['label'] = cp['instance type'] if cp['instance type']
           container.content = container_number
           did.add_child(container)
+        end
+      end
+    end
+
+    def add_controlaccess(cp, component_part)
+      ['geogname', 'corpname', 'famname', 'name', 'persname', 'subject'].each do |controlaccess_type|
+        if cp[controlaccess_type]
+          controlaccess = component_part.xpath('controlaccess').first
+#          debugger
+          if !controlaccess
+            controlaccess = node('controlaccess')
+          end
+          controlaccess_element = node(controlaccess_type)
+          controlaccess_element.content = cp[controlaccess_type]
+          if !cp[controlaccess_type + '_source'].nil?
+            controlaccess_element['source'] = cp[controlaccess_type + '_source']
+          end
+          controlaccess.add_child(controlaccess_element)
+          component_part.add_child(controlaccess)
         end
       end
     end
