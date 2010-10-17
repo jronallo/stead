@@ -56,7 +56,7 @@ module Stead
       @component_parts.each do |cp|
         c = node(file_component_part_name)
         c['level'] = 'file'
-        c['audience'] = 'internal' if !cp['internal only'].blank?
+        c['audience'] = 'internal' if !cp['internal only'].nil?
         did = node('did')
         c.add_child(did)
         add_did_nodes(cp, did)
@@ -118,7 +118,7 @@ module Stead
       item = node('item')
       contents = []
       ser.each do |ser_part|
-        contents << ser_part unless ser_part.blank?
+        contents << ser_part unless ser_part.nil? or ser_part.empty?
       end
       item.content = contents.join(', ')
       list.add_child(item)
@@ -151,7 +151,7 @@ module Stead
 
     def add_did_nodes(cp, did)
       field_map.each do |header, element|
-        if !cp[header].blank?
+        if !cp[header].nil?
           if element.is_a? String
             node = node(element)
             node.content = cp[header]
@@ -171,7 +171,7 @@ module Stead
       ['1', '2', '3'].each do |container_number|
         container_type = cp['container ' + container_number + ' type']
         container_number = cp['container ' + container_number + ' number']
-        if !container_type.blank? and !container_number.blank?
+        if !container_type.nil? and !container_number.nil?
           unless valid_container_type?(container_type)
             raise Stead::InvalidContainerType, container_type
           end
@@ -193,7 +193,7 @@ module Stead
     end
 
     def add_scopecontent(cp, did)
-      unless cp['scopecontent'].blank?
+      unless cp['scopecontent'].nil?
         scopecontent = node('scopecontent')
         p = node('p')
         p.content = cp['scopecontent']
@@ -203,7 +203,7 @@ module Stead
     end
 
     def add_accessrestrict(cp, did)
-      unless cp['conditions governing access'].blank?
+      unless cp['conditions governing access'].nil?
         accessrestrict = node('accessrestrict')
         p = node('p')
         p.content = cp['conditions governing access']
@@ -266,7 +266,7 @@ module Stead
 
     def series_found?
       @component_parts.each do |row|
-        return false if row['series number'].blank?
+        return false if row['series number'].nil?
       end
     end
 

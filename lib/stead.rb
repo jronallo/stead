@@ -49,7 +49,6 @@ require 'csv'
 if CSV.const_defined? :Reader
   require 'fastercsv'
 end
-require 'active_support'
 
 require 'pp'
 

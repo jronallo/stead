@@ -12,7 +12,6 @@ begin
     gem.authors = ["Jason Ronallo"]
     gem.add_dependency "nokogiri", ">= 1.4.1"
     gem.add_dependency "fastercsv", ">= 1.5.0"
-    gem.add_dependency "activesupport", ">= 2.3.5"
     gem.add_dependency "trollop", ">= 1.16.2"
     gem.add_development_dependency "shoulda", ">= 0"
     gem.files = FileList["[A-Z]*", "{bin,examples,lib}/**/*"]
