@@ -57,9 +57,10 @@ Please let me know what else you need in such a tool and I'll try to work it in.
 == Limitations
 
 - Some of this is still be NCSU and possibly Archivists' Toolkit specific.
-- This tool has only been used a handful of times so far.
-- Only works with this specific schema.
-- Only known to work with series at the c01 level and files at the c02 level. Other deeper levels of nesting will not currently work. (May work with subseries.)
+- Only works with this specific schema. Please submit ideas for expansion.
+- Only known to work with series at the c01 level and files at the c02 level. 
+  Other deeper levels of nesting will not currently work. May work with subseries
+  or with no series at all.
 - Column values like series must be duplicated for each row.
 
 == Ruby versions
@@ -73,10 +74,8 @@ Tested with the following Rubies:
 
 - More tests (though there are already lots of tests).
 - Better documentation on the CSV file schema.
-- Rdoc.
 - Automate tests of csv2ead tool.
 - Expand the schema to other parts of the EAD?
-- Create webapp where a user can submit a CSV file and get returned the EAD.
 
 == Author
 
