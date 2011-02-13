@@ -24,8 +24,8 @@ but should work with other systems and XSL stylesheets.
 
 == Try it!
 
-Steady[link:https://github.com/jronallo/steady] is a Rails application which 
-wraps stead. You can try it here: http://steady.heroku.com/
+Steady[https://github.com/jronallo/steady] is a Rails application which 
+wraps stead. You can try it here: http://steady.heroku.com
 
 == Requirements
 
