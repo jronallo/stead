@@ -13,6 +13,8 @@ tmtags
 ## VIM
 *.swp
 
+.redcar
+
 ## PROJECT::GENERAL
 coverage
 rdoc

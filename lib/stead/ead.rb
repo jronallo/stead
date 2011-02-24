@@ -23,7 +23,7 @@ module Stead
     def self.from_csv(csv, opts={})
       lines = csv.split(/\r\n|\n/)
       100.times do
-        lines[0] = lines.first.gsub(',,', ',nothing,')
+        lines[0] = lines.first.gsub(',,', ',"",')
       end
       csv = lines.join("\n")
       self.new(opts.merge(:csv => csv))
@@ -172,9 +172,11 @@ module Stead
       ['1', '2', '3'].each do |container_number|
         container_type = cp['container ' + container_number + ' type']
         container_number = cp['container ' + container_number + ' number']
-        if !container_type.nil? and !container_number.nil?
+        if !container_type.nil? and !container_number.nil? and !container_type.empty? and !container_number.empty?
+          container_type.strip!
           unless valid_container_type?(container_type)
-            raise Stead::InvalidContainerType, container_type
+            debugger
+            raise Stead::InvalidContainerType, %Q{"#{container_type}"}
           end
           container = node('container')
           container['type'] = container_type
