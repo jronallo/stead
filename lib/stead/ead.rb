@@ -175,7 +175,6 @@ module Stead
         if !container_type.nil? and !container_number.nil? and !container_type.empty? and !container_number.empty?
           container_type.strip!
           unless valid_container_type?(container_type)
-            debugger
             raise Stead::InvalidContainerType, %Q{"#{container_type}"}
           end
           container = node('container')
