@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stead}
-  s.version = "0.0.6"
+  s.version = "0.0.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Ronallo"]
-  s.date = %q{2011-02-24}
+  s.date = %q{2011-02-25}
   s.default_executable = %q{csv2ead}
   s.description = %q{Converts CSV files of a specific schema into EAD XML.}
   s.email = %q{jronallo@gmail.com}
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Spreadsheets To Encoded Archival Description}
   s.test_files = [
     "test/test_ead_no_series.rb",
+     "test/test_empty_note.rb",
      "test/test_ead_bad_container_type.rb",
      "test/test_ead_series.rb",
      "test/helper.rb",
