@@ -26,10 +26,11 @@ EOS
   opt :stdout, 'Output full EAD to terminal'
 end
 
-unless opts[:output] or opts[:stdout]
-  puts "You must specify either --output <file> and/or --stdout to direct output to the terminal."
-  exit
-end
+# unless opts[:output] or opts[:stdout]
+#   puts "You must specify either --output <file> and/or --stdout to direct output to the terminal."
+#   exit
+# end
+
 
 if opts[:ncsu]
   opts[:template] = File.join(File.dirname(__FILE__), '..', 'lib', 'stead', 'templates', 'ncsu_ead.xml')
@@ -66,5 +67,5 @@ if opts[:output]
   end
 end
 
-puts Stead.pretty_write(ead) if opts[:stdout]
+puts Stead.pretty_write(ead) if !opts[:output]
 

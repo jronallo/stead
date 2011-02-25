@@ -21,11 +21,12 @@ module Stead
     end
 
     def self.from_csv(csv, opts={})
-      lines = csv.split(/\r\n|\n/)
-      100.times do
-        lines[0] = lines.first.gsub(',,', ',"",')
+      lines = csv.split(/\r\n|\n|\r/)
+      # trim empty lines
+      cleaned_lines = lines.select do |line|
+        !line.strip.empty?
       end
-      csv = lines.join("\n")
+      csv = cleaned_lines.join("\n")
       self.new(opts.merge(:csv => csv))
     end
 
