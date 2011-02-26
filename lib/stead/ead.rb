@@ -195,7 +195,6 @@ module Stead
       ['geogname', 'corpname', 'famname', 'name', 'persname', 'subject'].each do |controlaccess_type|
         if cp[controlaccess_type]
           controlaccess = component_part.xpath('controlaccess').first
-#          debugger
           if !controlaccess
             controlaccess = node('controlaccess')
           end
