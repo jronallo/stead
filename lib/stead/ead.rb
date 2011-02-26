@@ -176,7 +176,11 @@ module Stead
         if !container_type.nil? and !container_number.nil? and !container_type.empty? and !container_number.empty?
           container_type.strip!
           unless valid_container_type?(container_type)
-            raise Stead::InvalidContainerType, %Q{"#{container_type}"}
+            if !valid_container_type?(container_type.downcase)
+              raise Stead::InvalidContainerType, %Q{"#{container_type}"}
+            else
+              container_type = container_type.downcase
+            end
           end
           container = node('container')
           container['type'] = container_type

@@ -17,7 +17,7 @@ class TestSteadErrors < Test::Unit::TestCase
     begin
       @ead_generator.to_ead
     rescue Stead::InvalidContainerType => error
-      assert_equal '"Box"', error.message
+      assert_equal '"Boxer"', error.message
     end
   end
 
