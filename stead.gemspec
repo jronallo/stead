@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stead}
-  s.version = "0.0.7"
+  s.version = "0.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Ronallo"]
-  s.date = %q{2011-02-25}
+  s.date = %q{2011-02-26}
   s.default_executable = %q{csv2ead}
   s.description = %q{Converts CSV files of a specific schema into EAD XML.}
   s.email = %q{jronallo@gmail.com}
@@ -39,12 +39,12 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Spreadsheets To Encoded Archival Description}
   s.test_files = [
-    "test/test_ead_no_series.rb",
-     "test/test_empty_note.rb",
-     "test/test_ead_bad_container_type.rb",
-     "test/test_ead_series.rb",
+    "test/test_ead_bad_container_type.rb",
      "test/helper.rb",
      "test/test_stead.rb",
+     "test/test_wheless.rb",
+     "test/test_ead_no_series.rb",
+     "test/test_ead_series.rb",
      "examples/ncsu.rb"
   ]
 
@@ -57,17 +57,20 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<fastercsv>, [">= 1.5.0"])
       s.add_runtime_dependency(%q<trollop>, [">= 1.16.2"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<equivalent-xml>, [">= 0"])
     else
       s.add_dependency(%q<nokogiri>, [">= 1.4.1"])
       s.add_dependency(%q<fastercsv>, [">= 1.5.0"])
       s.add_dependency(%q<trollop>, [">= 1.16.2"])
       s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<equivalent-xml>, [">= 0"])
     end
   else
     s.add_dependency(%q<nokogiri>, [">= 1.4.1"])
     s.add_dependency(%q<fastercsv>, [">= 1.5.0"])
     s.add_dependency(%q<trollop>, [">= 1.16.2"])
     s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<equivalent-xml>, [">= 0"])
   end
 end
 
