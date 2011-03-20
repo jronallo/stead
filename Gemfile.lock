@@ -1,0 +1,37 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    columnize (0.3.2)
+    equivalent-xml (0.1.6)
+      nokogiri
+    fastercsv (1.5.4)
+    git (1.2.5)
+    jeweler (1.5.2)
+      bundler (~> 1.0.0)
+      git (>= 1.2.5)
+      rake
+    linecache (0.43)
+    nokogiri (1.4.4)
+    rake (0.8.7)
+    rcov (0.9.9)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
+    shoulda (2.11.3)
+    trollop (1.16.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.0.0)
+  equivalent-xml
+  fastercsv
+  jeweler (~> 1.5.2)
+  nokogiri
+  rcov
+  ruby-debug
+  shoulda
+  trollop
