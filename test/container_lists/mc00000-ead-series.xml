@@ -62,26 +62,36 @@
           <unitdate>1955-1978</unitdate>
         </did>
        
-         
-          <c02>
+        <c02 level="subseries">
+          <did>
+            <unitid>1</unitid>
+            <unittitle>MC 00000 Subseries 01.01</unittitle>
+            <unitdate>1951</unitdate>
+          </did>
+          <c03>
             <did>
               <unittitle>Daily Financial Ledger</unittitle>
               <unitdate>1969-1970</unitdate>
               <container type="box" label="Mixed materials">58</container>
               <container type="othertype" label="Mixed materials">550</container>
             </did>
-          </c02>
-        
-        
-          <c02>
+          </c03>
+        </c02>
+        <c02>
+          <did>
+            <unitid>2</unitid>
+            <unittitle>MC 00000 Subseries 01.02</unittitle>
+            <unitdate>1952</unitdate>
+          </did>
+          <c03>
             <did>
               <unittitle>Scott, Correspondence Prior to 1959</unittitle>
               <unitdate>1955-1959</unitdate>
               <container type="box" label="Mixed materials">58</container>
               <container type="othertype" label="Mixed materials">551</container>
             </did>
-          </c02>
-        
+          </c03>
+        </c02>
       </c01>
       <c01 level="series">
         <did>

@@ -1,6 +1,6 @@
 module Stead
   class EadGenerator
-    attr_accessor :csv, :ead, :template, :series, :component_parts
+    attr_accessor :csv, :ead, :template, :series, :subseries, :component_parts
 
     def initialize(opts = {})
       @csv = opts[:csv] || nil
@@ -53,9 +53,10 @@ module Stead
       @dsc = @ead.xpath('//xmlns:archdesc/xmlns:dsc')[0]
       if series?
         add_series
-      end
+        add_subseries if subseries?
+      end      
       @component_parts.each do |cp|
-        c = node(file_component_part_name)
+        c = node(file_component_part_name(cp))
         c['level'] = 'file'
         c['audience'] = 'internal' if !cp['internal only'].nil?
         did = node('did')
@@ -101,7 +102,35 @@ module Stead
         series_did.add_child(unitdate)
       end
     end
-
+    
+    def add_subseries
+      @component_parts.each do |cp|
+        if !cp['subseries number'].nil?
+          series_list =    @dsc.xpath("xmlns:c01/xmlns:did/xmlns:unitid[text()='#{cp['series number']}']")
+          subseries_list = @dsc.xpath("xmlns:c01/xmlns:c02[@level='subseries']/xmlns:did/xmlns:unitid[text()='#{cp['subseries number']}']")
+          if series_list.length == 1 and subseries_list.length == 0
+            series = series_list.first.parent.parent
+            subseries_node = node('c02')
+            series.add_child(subseries_node)
+            subseries_node['level'] = 'subseries'
+            # create series did and add to subseries node
+            # FIXME: DRY this up with add_series
+            subseries_did = node('did')
+            subseries_node.add_child(subseries_did)
+            unitid = node('unitid')
+            unitid.content = cp['subseries number']
+            unittitle = node('unittitle')
+            unittitle.content = cp['subseries title']
+            unitdate = node('unitdate')
+            unitdate.content = cp['subseries dates']
+            subseries_did.add_child(unitid)
+            subseries_did.add_child(unittitle)
+            subseries_did.add_child(unitdate)
+          end
+        end
+      end
+    end
+        
     def add_arrangement
       arrangement = node('arrangement')
       head = node('head')
@@ -128,7 +157,10 @@ module Stead
 
     # metadata is a hash from the @component_part and c is the actual node
     def add_file_component_part(metadata, c)
-      if series?
+      if !metadata['subseries number'].nil?
+        current_subseries = find_current_subseries(metadata)
+        current_subseries.add_child(c)
+      elsif series?
         current_series = find_current_series(metadata)
         current_series.add_child(c)
       else
@@ -142,9 +174,17 @@ module Stead
         return node.parent.parent if node.content == series_title
       end
     end
+    
+    def find_current_subseries(cp)      
+      @ead.xpath("//xmlns:c02/xmlns:did/xmlns:unitid[text()='#{cp['subseries number']}']").each do |node|
+        return node.parent.parent if node.content == cp['subseries number']
+      end
+    end
 
-    def file_component_part_name
-      if series?
+    def file_component_part_name(cp)
+      if !cp['subseries number'].nil?
+        'c03'
+      elsif series?
         'c02'
       else
         'c01'
@@ -292,6 +332,18 @@ module Stead
     def series_found?
       @component_parts.each do |row|
         return false if row['series number'].nil?
+      end
+    end
+    
+    def subseries?
+      if subseries_found?
+        subseries = true
+      end
+    end
+    
+    def subseries_found?
+      @component_parts.each do |row|
+        return true if !row['subseries number'].nil?
       end
     end
 
