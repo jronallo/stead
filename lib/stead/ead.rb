@@ -169,9 +169,9 @@ module Stead
     end
 
     def find_current_series(cp)
-      series_title = cp['series title']
-      @ead.xpath("//xmlns:c01/xmlns:did/xmlns:unittitle").each do |node|
-        return node.parent.parent if node.content == series_title
+      series_number = cp['series number']
+      @ead.xpath("//xmlns:c01/xmlns:did/xmlns:unitid").each do |node|
+        return node.parent.parent if node.content == series_number
       end
     end
     

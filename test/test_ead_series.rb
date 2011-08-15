@@ -5,13 +5,13 @@ class TestSteadEadSeries < Test::Unit::TestCase
 
   def setup
     @xsd = Nokogiri::XML::Schema(File.read(Stead.ead_schema))
-    #@template = Nokogiri::XML(File.read(Stead.ead_template))
+    
     @example = Nokogiri::XML(File.read(File.join(File.dirname(__FILE__),
           'container_lists', 'mc00000-ead-series.xml' )))
     @ead_generator = Stead::EadGenerator.from_csv(File.read(File.join(File.dirname(__FILE__),
           'container_lists', 'mc00000_container_list.csv' )))
     @generated_ead = @ead_generator.to_ead
-    #puts Stead.pretty_write(@generated_ead)
+    
     @did_xpath = '//xmlns:c02/xmlns:did'
   end
 
