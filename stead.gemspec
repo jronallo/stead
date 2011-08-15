@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stead}
-  s.version = "0.0.9"
+  s.version = "0.0.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Ronallo"]
-  s.date = %q{2011-08-10}
+  s.date = %q{2011-08-15}
   s.default_executable = %q{csv2ead}
   s.description = %q{Converts CSV files of a specific schema into EAD XML.}
   s.email = %q{jronallo@gmail.com}
@@ -43,8 +43,10 @@ Gem::Specification.new do |s|
     "test/container_lists/mc00000_container_list_bad_container_type.csv",
     "test/container_lists/mc00000_container_list_no_series.csv",
     "test/container_lists/mc00084_container_list_empty_header.csv",
+    "test/container_lists/snyderman3.csv",
     "test/container_lists/wheless.csv",
     "test/helper.rb",
+    "test/test_duplicate_series_title.rb",
     "test/test_ead_bad_container_type.rb",
     "test/test_ead_no_series.rb",
     "test/test_ead_series.rb",
@@ -59,6 +61,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "examples/ncsu.rb",
     "test/helper.rb",
+    "test/test_duplicate_series_title.rb",
     "test/test_ead_bad_container_type.rb",
     "test/test_ead_no_series.rb",
     "test/test_ead_series.rb",
