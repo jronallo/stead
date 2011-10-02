@@ -16,6 +16,7 @@ module Stead
     "cassettebox",
     "cdbox",
     "diskette",
+    "drawer",
     "drawingsbox",
     "flatbox",
     "flatfile",
