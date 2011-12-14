@@ -18,6 +18,7 @@ module Stead
     "diskette",
     "drawer",
     "drawingsbox",
+    "envelope",
     "flatbox",
     "flatfile",
     "flatfolder",
