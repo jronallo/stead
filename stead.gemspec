@@ -4,15 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{stead}
-  s.version = "0.0.11"
+  s.name = "stead"
+  s.version = "0.0.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Ronallo"]
-  s.date = %q{2011-10-02}
-  s.default_executable = %q{csv2ead}
-  s.description = %q{Converts CSV files of a specific schema into EAD XML.}
-  s.email = %q{jronallo@gmail.com}
+  s.date = "2011-12-14"
+  s.description = "Converts CSV files of a specific schema into EAD XML."
+  s.email = "jronallo@gmail.com"
   s.executables = ["csv2ead"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -54,10 +53,10 @@ Gem::Specification.new do |s|
     "test/test_wheless.rb",
     "watchr.rb"
   ]
-  s.homepage = %q{http://github.com/jronallo/stead}
+  s.homepage = "http://github.com/jronallo/stead"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Spreadsheets To Encoded Archival Description}
+  s.rubygems_version = "1.8.10"
+  s.summary = "Spreadsheets To Encoded Archival Description"
   s.test_files = [
     "examples/ncsu.rb",
     "test/helper.rb",
