@@ -1,7 +1,6 @@
-require 'rubygems'
 require 'test/unit'
 require 'shoulda'
-require 'ruby-debug'
+require 'pry'
 require 'equivalent-xml'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
