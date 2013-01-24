@@ -211,6 +211,16 @@ module Stead
             node2 = node(element[1])
             node1.add_child(node2)
             node2.content = cp[header]
+          elsif element.is_a? Hash
+            element.each do |key, value|
+              # puts "it's a hash!"
+              node = did.xpath(key).first
+              if !node
+                node = node(key)
+                did.add_child(node)
+              end
+              node[value] = cp[header]
+            end
           end
         end
       end
@@ -292,6 +302,8 @@ module Stead
       {'file id' => 'unitid',
         'file title' => 'unittitle',
         'file dates' => 'unitdate',
+        'file dates type' => {'unitdate' => 'type'},
+        'file dates normal' => {'unitdate' => 'normal'},
         'extent' => ['physdesc', 'extent'],
         'note1' => ['note', 'p'],
         'note2' => ['note', 'p']
