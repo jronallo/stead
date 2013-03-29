@@ -5,13 +5,6 @@ GEM
     equivalent-xml (0.1.6)
       nokogiri
     fastercsv (1.5.4)
-    git (1.2.5)
-    jeweler (1.8.4)
-      bundler (~> 1.0)
-      git (>= 1.2.5)
-      rake
-      rdoc
-    json (1.7.5)
     method_source (0.8)
     nokogiri (1.4.4)
     pry (0.9.10)
@@ -20,9 +13,6 @@ GEM
       slop (~> 3.3.1)
     rake (10.0.2)
     rb-readline (0.4.2)
-    rcov (0.9.9)
-    rdoc (3.12)
-      json (~> 1.4)
     shoulda (2.11.3)
     slop (3.3.3)
     trollop (1.16.2)
@@ -31,13 +21,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
   equivalent-xml
   fastercsv
-  jeweler
   nokogiri
   pry
+  rake
   rb-readline
-  rcov
   shoulda
   trollop

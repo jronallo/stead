@@ -3,6 +3,8 @@
 Spreadsheets To Encoded Archival Description. Turns CSV files of container lists
 into a stub EAD XML record.
 
+{<img src="https://travis-ci.org/jronallo/stead.png" />}[https://travis-ci.org/jronallo/stead]
+
 == Story
 
 Sometimes donors have spreadsheets which list the contents of their collections.
