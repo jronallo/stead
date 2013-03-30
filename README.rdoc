@@ -70,13 +70,6 @@ Please let me know what else you need in such a tool and I'll try to work it in.
   or with no series at all.
 - Column values like series must be duplicated for each row.
 
-== Ruby versions
-
-Tested with the following Rubies:
-- 1.8.7-p249
-- 1.8.7-p302
-- 1.9.2-p0
-
 == TODO
 
 - More tests (though there are already lots of tests).
