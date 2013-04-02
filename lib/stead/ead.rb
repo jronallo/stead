@@ -284,7 +284,7 @@ module Stead
     end
 
     def add_controlaccess(cp, component_part)
-      ['geogname', 'corpname', 'famname', 'name', 'persname', 'subject'].each do |controlaccess_type|
+      ['geogname', 'corpname', 'famname', 'name', 'persname', 'subject', 'genreform'].each do |controlaccess_type|
         if cp[controlaccess_type]
           controlaccess = component_part.xpath('controlaccess').first
           if !controlaccess
