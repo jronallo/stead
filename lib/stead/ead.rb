@@ -340,6 +340,7 @@ module Stead
         'file dates type' => {'unitdate' => 'type'},
         'file dates normal' => {'unitdate' => 'normal'},
         'extent' => ['physdesc', 'extent'],
+        'physloc' => 'physloc',
         'note1' => ['note', 'p'],
         'note2' => ['note', 'p']
       }
