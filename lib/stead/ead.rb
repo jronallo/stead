@@ -359,6 +359,9 @@ module Stead
       if a.first.keys.include?(nil)
         raise Stead::InvalidCsv
       end
+      if !a.first.keys.include?('instance type')
+        warn "CSV is missing instance type"
+      end
       # TODO invalid if the last row is blank
       #      a.sort_by do |row|
       #        [
