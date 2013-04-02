@@ -62,6 +62,7 @@ module Stead
         did = node('did')
         c.add_child(did)
         add_did_nodes(cp, did)
+        add_physdescs(cp, did)
         add_containers(cp, did)
         add_scopecontent(cp, did)
         add_accessrestrict(cp, did)
@@ -162,7 +163,7 @@ module Stead
       list = @ead.xpath('//xmlns:arrangement/xmlns:p/xmlns:list').first
       item = node('item')
       contents = []
-      ser[0..2].each do |ser_part|
+      ser[0..1].each do |ser_part|
         contents << ser_part unless ser_part.nil? or ser_part.empty?
       end
       item.content = contents.join(', ')
@@ -229,6 +230,33 @@ module Stead
               node[value] = cp[header]
             end
           end
+        end
+      end
+    end
+
+    def add_physdescs(cp, did)
+      ['1', '2', '3', '4', '5', '6', '7', '8', '9'].each do |physdesc_number|
+        physdesc = cp['physdesc' + physdesc_number]
+        dimensions = cp['dimensions' + physdesc_number]
+        physfacet = cp['physfacet' + physdesc_number]
+        unless (physdesc.nil? or physdesc.empty?) and (dimensions.nil? or dimensions.empty?)
+          physdesc_node = node('physdesc')
+          unless physdesc.nil? or physdesc.empty?
+            physdesc_node['label'] = 'General Physical Description note'
+            physdesc_node.content = physdesc
+          end
+          unless dimensions.nil? or dimensions.empty?
+            dimensions_node = node('dimensions')
+            dimensions_node.content = dimensions
+            physdesc_node.add_child(dimensions_node)
+          end
+          did.add_child(physdesc_node)
+        end
+        unless physfacet.nil? or physfacet.empty?
+          physdesc_node = node('physdesc')
+          physdesc_node['label'] = 'Other Physical Details note'
+          physdesc_node.content = physfacet
+          did.add_child(physdesc_node)
         end
       end
     end
