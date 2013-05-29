@@ -81,7 +81,7 @@ module Stead
     def add_series
       add_arrangement
       series = @component_parts.map do |cp|
-        [cp['series number'], cp['series title'], cp['series dates'], cp['series scopecontent'], cp['series extent']]
+        [cp['series number'], cp['series title'], cp['series dates'], cp['series scopecontent'], cp['series extent'], cp['series bioghist']]
       end.uniq
       series.each do |ser|
         add_arrangement_item(ser)
@@ -114,6 +114,16 @@ module Stead
           extent.content = ser[4]
           series_did.add_child(physdesc)
           physdesc.add_child(extent)
+        end
+        unless ser[5].nil?
+          bioghist = node('bioghist')
+          head = node('head')
+          head.content = 'Administrative History'
+          p = node('p')
+          p.content = ser[5]
+          bioghist.add_child(head)
+          bioghist.add_child(p)
+          series_node.add_child(bioghist)
         end
       end
     end
