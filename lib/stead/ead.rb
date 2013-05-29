@@ -322,6 +322,24 @@ module Stead
           controlaccess.add_child(controlaccess_element)
           component_part.add_child(controlaccess)
         end
+        (1..9).each do |the_iterate|
+          if cp[controlaccess_type + " " + the_iterate.to_s]
+            controlaccess = component_part.xpath('controlaccess').first
+            if !controlaccess
+              controlaccess = node('controlaccess')
+            end
+            controlaccess_element = node(controlaccess_type)
+            controlaccess_element.content = cp[controlaccess_type + " " + the_iterate.to_s]
+            if !cp[controlaccess_type + " " + the_iterate.to_s + ' source'].nil?
+              controlaccess_element['source'] = cp[controlaccess_type + " " + the_iterate.to_s + ' source']
+            end
+            if !cp[controlaccess_type + " " + the_iterate.to_s + ' role'].nil?
+              controlaccess_element['role'] = cp[controlaccess_type + " " + the_iterate.to_s + ' role']
+            end
+            controlaccess.add_child(controlaccess_element)
+            component_part.add_child(controlaccess)
+          end
+        end
       end
     end
 
