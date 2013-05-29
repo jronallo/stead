@@ -62,7 +62,10 @@ module Stead
         did = node('did')
         c.add_child(did)
         add_did_nodes(cp, did)
+        add_dao(cp, did)
+        add_physdescs(cp, did)
         add_containers(cp, did)
+        add_language(cp, did)
         add_scopecontent(cp, did)
         add_accessrestrict(cp, did)
         add_controlaccess(cp, c)
@@ -80,7 +83,7 @@ module Stead
     def add_series
       add_arrangement
       series = @component_parts.map do |cp|
-        [cp['series number'], cp['series title'], cp['series dates'], cp['series scopecontent']]
+        [cp['series number'], cp['series title'], cp['series dates'], cp['series scopecontent'], cp['series extent'], cp['series bioghist']]
       end.uniq
       series.each do |ser|
         add_arrangement_item(ser)
@@ -106,6 +109,23 @@ module Stead
           p.content = ser[3]
           scopecontent.add_child(p)
           series_node.add_child(scopecontent)
+        end
+        unless ser[4].nil?
+          physdesc = node('physdesc')
+          extent = node('extent')
+          extent.content = ser[4]
+          series_did.add_child(physdesc)
+          physdesc.add_child(extent)
+        end
+        unless ser[5].nil?
+          bioghist = node('bioghist')
+          head = node('head')
+          head.content = 'Administrative History'
+          p = node('p')
+          p.content = ser[5]
+          bioghist.add_child(head)
+          bioghist.add_child(p)
+          series_node.add_child(bioghist)
         end
       end
     end
@@ -211,8 +231,55 @@ module Stead
             node2 = node(element[1])
             node1.add_child(node2)
             node2.content = cp[header]
+          elsif element.is_a? Hash
+            element.each do |key, value|
+              # puts "it's a hash!"
+              node = did.xpath(key).first
+              if !node
+                node = node(key)
+                did.add_child(node)
+              end
+              node[value] = cp[header]
+            end
           end
         end
+      end
+    end
+
+    def add_physdescs(cp, did)
+      ['1', '2', '3', '4', '5', '6', '7', '8', '9'].each do |physdesc_number|
+        physdesc = cp['physdesc' + physdesc_number]
+        dimensions = cp['dimensions' + physdesc_number]
+        physfacet = cp['physfacet' + physdesc_number]
+        unless (physdesc.nil? or physdesc.empty?) and (dimensions.nil? or dimensions.empty?)
+          physdesc_node = node('physdesc')
+          unless physdesc.nil? or physdesc.empty?
+            physdesc_node['label'] = 'General Physical Description note'
+            physdesc_node.content = physdesc
+          end
+          unless dimensions.nil? or dimensions.empty?
+            dimensions_node = node('dimensions')
+            dimensions_node.content = dimensions
+            physdesc_node.add_child(dimensions_node)
+          end
+          did.add_child(physdesc_node)
+        end
+        unless physfacet.nil? or physfacet.empty?
+          physdesc_node = node('physdesc')
+          physdesc_node['label'] = 'Other Physical Details note'
+          physdesc_node.content = physfacet
+          did.add_child(physdesc_node)
+        end
+      end
+    end
+
+    def add_language(cp, did)
+      unless cp['langcode'].nil? or cp['langcode'].empty?
+        langmaterial_node = node('langmaterial')
+        language_node = node('language')
+        language_node['langcode'] = cp['langcode']
+        langmaterial_node.add_child(language_node)
+        did.add_child(langmaterial_node)
       end
     end
 
@@ -239,7 +306,7 @@ module Stead
     end
 
     def add_controlaccess(cp, component_part)
-      ['geogname', 'corpname', 'famname', 'name', 'persname', 'subject'].each do |controlaccess_type|
+      ['geogname', 'corpname', 'famname', 'name', 'persname', 'subject', 'genreform'].each do |controlaccess_type|
         if cp[controlaccess_type]
           controlaccess = component_part.xpath('controlaccess').first
           if !controlaccess
@@ -250,8 +317,29 @@ module Stead
           if !cp[controlaccess_type + '_source'].nil?
             controlaccess_element['source'] = cp[controlaccess_type + '_source']
           end
+          if !cp[controlaccess_type + '_role'].nil?
+            controlaccess_element['role'] = cp[controlaccess_type + '_role']
+          end
           controlaccess.add_child(controlaccess_element)
           component_part.add_child(controlaccess)
+        end
+        (1..9).each do |the_iterate|
+          if cp[controlaccess_type + " " + the_iterate.to_s]
+            controlaccess = component_part.xpath('controlaccess').first
+            if !controlaccess
+              controlaccess = node('controlaccess')
+            end
+            controlaccess_element = node(controlaccess_type)
+            controlaccess_element.content = cp[controlaccess_type + " " + the_iterate.to_s]
+            if !cp[controlaccess_type + " " + the_iterate.to_s + ' source'].nil?
+              controlaccess_element['source'] = cp[controlaccess_type + " " + the_iterate.to_s + ' source']
+            end
+            if !cp[controlaccess_type + " " + the_iterate.to_s + ' role'].nil?
+              controlaccess_element['role'] = cp[controlaccess_type + " " + the_iterate.to_s + ' role']
+            end
+            controlaccess.add_child(controlaccess_element)
+            component_part.add_child(controlaccess)
+          end
         end
       end
     end
@@ -261,6 +349,37 @@ module Stead
         return true
       else
         return false
+      end
+    end
+
+    def add_dao(cp, did)
+      unless cp['dao href'].nil? or ( cp['file title'].nil? and cp['dao title'].nil? )
+        dao = node('dao')
+        daodesc = node('daodesc')
+        p = node('p')
+        if cp['dao title'].nil?
+          dao['ns2:title'] = cp['file title']
+          p.content = cp['file title']
+          unless cp['file dates'].nil?
+            p.content << ", " + cp['file dates']
+          end
+        else
+          dao['ns2:title'] = cp['dao title']
+          p.content = cp['dao title']
+        end
+        unless cp['dao actuate'].nil?
+          dao['ns2:actuate'] = cp['dao actuate']
+        end
+        unless cp['dao show'].nil?
+          dao['ns2:show'] = cp['dao show']
+        end
+        unless cp['dao role'].nil?
+          dao['ns2:role'] = cp['dao role']
+        end
+        dao['ns2:href'] = cp['dao href']
+        daodesc.add_child(p)
+        dao.add_child(daodesc)
+        did.add_next_sibling(dao)
       end
     end
 
@@ -292,9 +411,13 @@ module Stead
       {'file id' => 'unitid',
         'file title' => 'unittitle',
         'file dates' => 'unitdate',
+        'file dates type' => {'unitdate' => 'type'},
+        'file dates normal' => {'unitdate' => 'normal'},
         'extent' => ['physdesc', 'extent'],
+        'physloc' => 'physloc',
         'note1' => ['note', 'p'],
-        'note2' => ['note', 'p']
+        'note2' => ['note', 'p'],
+        'note3' => ['note', 'p']
       }
     end
 
@@ -310,6 +433,9 @@ module Stead
       end
       if a.first.keys.include?(nil)
         raise Stead::InvalidCsv
+      end
+      if !a.first.keys.include?('instance type')
+        warn "CSV is missing instance type"
       end
       # TODO invalid if the last row is blank
       #      a.sort_by do |row|
