@@ -62,6 +62,7 @@ module Stead
         did = node('did')
         c.add_child(did)
         add_did_nodes(cp, did)
+        add_dao(cp, did)
         add_physdescs(cp, did)
         add_containers(cp, did)
         add_language(cp, did)
@@ -348,6 +349,37 @@ module Stead
         return true
       else
         return false
+      end
+    end
+
+    def add_dao(cp, did)
+      unless cp['dao href'].nil? or ( cp['file title'].nil? and cp['dao title'].nil? )
+        dao = node('dao')
+        daodesc = node('daodesc')
+        p = node('p')
+        if cp['dao title'].nil?
+          dao['ns2:title'] = cp['file title']
+          p.content = cp['file title']
+          unless cp['file dates'].nil?
+            p.content << ", " + cp['file dates']
+          end
+        else
+          dao['ns2:title'] = cp['dao title']
+          p.content = cp['dao title']
+        end
+        unless cp['dao actuate'].nil?
+          dao['ns2:actuate'] = cp['dao actuate']
+        end
+        unless cp['dao show'].nil?
+          dao['ns2:show'] = cp['dao show']
+        end
+        unless cp['dao role'].nil?
+          dao['ns2:role'] = cp['dao role']
+        end
+        dao['ns2:href'] = cp['dao href']
+        daodesc.add_child(p)
+        dao.add_child(daodesc)
+        did.add_next_sibling(dao)
       end
     end
 
