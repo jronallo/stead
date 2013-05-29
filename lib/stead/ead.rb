@@ -80,7 +80,7 @@ module Stead
     def add_series
       add_arrangement
       series = @component_parts.map do |cp|
-        [cp['series number'], cp['series title'], cp['series dates']]
+        [cp['series number'], cp['series title'], cp['series dates'], cp['series scopecontent']]
       end.uniq
       series.each do |ser|
         add_arrangement_item(ser)
@@ -100,6 +100,13 @@ module Stead
         series_did.add_child(unitid)
         series_did.add_child(unittitle)
         series_did.add_child(unitdate)
+        unless ser[3].nil?
+          scopecontent = node('scopecontent')
+          p = node('p')
+          p.content = ser[3]
+          scopecontent.add_child(p)
+          series_node.add_child(scopecontent)
+        end
       end
     end
     
@@ -148,7 +155,7 @@ module Stead
       list = @ead.xpath('//xmlns:arrangement/xmlns:p/xmlns:list').first
       item = node('item')
       contents = []
-      ser.each do |ser_part|
+      ser[0..2].each do |ser_part|
         contents << ser_part unless ser_part.nil? or ser_part.empty?
       end
       item.content = contents.join(', ')
