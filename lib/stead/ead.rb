@@ -342,7 +342,8 @@ module Stead
         'extent' => ['physdesc', 'extent'],
         'physloc' => 'physloc',
         'note1' => ['note', 'p'],
-        'note2' => ['note', 'p']
+        'note2' => ['note', 'p'],
+        'note3' => ['note', 'p']
       }
     end
 
