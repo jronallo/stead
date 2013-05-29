@@ -316,6 +316,9 @@ module Stead
           if !cp[controlaccess_type + '_source'].nil?
             controlaccess_element['source'] = cp[controlaccess_type + '_source']
           end
+          if !cp[controlaccess_type + '_role'].nil?
+            controlaccess_element['role'] = cp[controlaccess_type + '_role']
+          end
           controlaccess.add_child(controlaccess_element)
           component_part.add_child(controlaccess)
         end
