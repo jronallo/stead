@@ -173,7 +173,7 @@ module Stead
       list = @ead.xpath('//xmlns:arrangement/xmlns:p/xmlns:list').first
       item = node('item')
       contents = []
-      ser[0..1].each do |ser_part|
+      ser[0..2].each do |ser_part|
         contents << ser_part unless ser_part.nil? or ser_part.empty?
       end
       item.content = contents.join(', ')
