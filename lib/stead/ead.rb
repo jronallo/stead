@@ -64,6 +64,7 @@ module Stead
         add_did_nodes(cp, did)
         add_physdescs(cp, did)
         add_containers(cp, did)
+        add_language(cp, did)
         add_scopecontent(cp, did)
         add_accessrestrict(cp, did)
         add_controlaccess(cp, c)
@@ -268,6 +269,16 @@ module Stead
           physdesc_node.content = physfacet
           did.add_child(physdesc_node)
         end
+      end
+    end
+
+    def add_language(cp, did)
+      unless cp['langcode'].nil? or cp['langcode'].empty?
+        langmaterial_node = node('langmaterial')
+        language_node = node('language')
+        language_node['langcode'] = cp['langcode']
+        langmaterial_node.add_child(language_node)
+        did.add_child(langmaterial_node)
       end
     end
 
