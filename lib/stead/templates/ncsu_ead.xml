@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ead xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"
+     xmlns:ns2="http://www.w3.org/1999/xlink"
+     xmlns="urn:isbn:1-931666-22-9"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <eadheader findaidstatus="Completed" repositoryencoding="iso15511"
+             countryencoding="iso3166-1" dateencoding="iso8601">
+    <eadid></eadid>
+    <filedesc>
+      <titlestmt>
+        <titleproper>
+          Preliminary Inventory to the
+        </titleproper>
+        <author></author>
+      </titlestmt>
+      <publicationstmt>
+        <publisher>Special Collections Research Center</publisher>
+      </publicationstmt>
+    </filedesc>
+    <profiledesc>
+      <langusage>
+        Finding aid written in
+        <language langcode="eng" encodinganalog="Language">English.</language>
+      </langusage>
+    </profiledesc>
+  </eadheader>
+  <archdesc level="subgrp">
+    <did>
+      <unittitle>Preliminary Inventory to the</unittitle>
+      <unitid></unitid>
+      <langmaterial>
+        <language langcode="eng"/>
+      </langmaterial>
+      <physloc label="Location">
+        For current information on the location of these materials, please consult the
+        <extref ns2:type="simple" ns2:href="http://www.lib.ncsu.edu/specialcollections/research/requestinformation.html">
+          Special Collections Research Center Reference Staff
+        </extref>
+        .
+      </physloc>
+
+    </did>
+    <accessrestrict >
+      <head>Access to Collection</head>
+      <p>
+        Collection is open for research; access requires at least 24 hours advance notice.
+      </p>
+    </accessrestrict>
+    <userestrict>
+      <head>Copyright Notice</head>
+      <p>
+        The nature of the NCSU Libraries' Special Collections means that copyright or other information about restrictions may be difficult or even impossible to determine despite reasonable efforts. The NCSU Libraries claims only physical ownership of most Special Collections materials.
+      </p>
+      <p>
+        The materials from our collections are made available for use in research, teaching, and private study, pursuant to U.S. Copyright law. The user must assume full responsibility for any use of the materials, including but not limited to, infringement of copyright and publication rights of reproduced materials. Any materials used for academic research or otherwise should be fully credited with the source.
+      </p>
+    </userestrict>
+    <prefercite id="ref8">
+      <head>Preferred Citation</head>
+      <p>
+        [Identification of item], Collection title, Collection number, NCSU Libraries' Special Collections Research Center.
+      </p>
+    </prefercite>
+    <dsc>
+
+    </dsc>
+  </archdesc>
+</ead>
+

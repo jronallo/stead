@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'pp'
+require 'stead'
+require 'trollop'
+
+opts = Trollop::options do
+  banner <<-EOS
+This script takes a csv file with a name in the format <eadid>_container_list.csv
+and creates a stub EAD XML document.
+
+Usage:
+  csv2ead --csv /path/to/<eadid>_container_list.csv [options]
+
+where options are:
+EOS
+
+  opt :csv, "A CSV file", :required => true, :type => String
+  opt :baseurl, 'Base URL for adding on the eadid', :type => String
+  opt :url, 'Full URL for this collection guide', :type => String
+  opt :template, 'Specify using a different EAD XML template', :type => String
+  opt :ncsu, 'Use NCSU specific template'
+  opt :extra, 'Full path to a Stead::Extra file to add in other data', :type => String
+  opt :output, 'Save the file by specifying the filename', :type => String
+  opt :pretty, 'If --output is specified this will pretty indent the container list.'
+  opt :stdout, 'Output full EAD to terminal'
+end
+
+# unless opts[:output] or opts[:stdout]
+#   puts "You must specify either --output <file> and/or --stdout to direct output to the terminal."
+#   exit
+# end
+
+
+if opts[:ncsu]
+  opts[:template] = File.join(File.dirname(__FILE__), '..', 'lib', 'stead', 'templates', 'ncsu_ead.xml')
+  opts[:baseurl] = 'http://www.lib.ncsu.edu/findingaids'
+  opts[:extra] = File.join(File.dirname(__FILE__), '..', 'examples', 'ncsu.rb')
+end
+
+ead_options = {}
+# add eadid from filename
+# basename will include _container_list so we need to remove that
+basename = File.basename(opts[:csv], '.csv')
+ead_options[:eadid] = basename.sub(/_container_list.*$/, '')
+ead_options[:base_url] = opts[:baseurl] if opts[:baseurl]
+[:template, :url].each do |key|
+  ead_options[key] = opts[key] if opts[key]
+end
+
+ead_generator = Stead::EadGenerator.from_csv(File.read(opts[:csv]), ead_options)
+ead = ead_generator.to_ead
+
+# add any extra content or elements to the EAD before outputting
+if opts[:extra]
+  require opts[:extra]
+  Stead::Extra.run(ead, ead_options[:eadid])
+end
+
+if opts[:output]
+  File.open(opts[:output], 'w') do |fh|
+    if opts[:pretty]
+      fh.puts Stead.pretty_write(ead)
+    else
+      fh.puts ead
+    end
+  end
+end
+
+puts Stead.pretty_write(ead) if !opts[:output]
+

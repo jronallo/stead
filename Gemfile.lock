@@ -1,0 +1,31 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    coderay (1.0.8)
+    equivalent-xml (0.1.6)
+      nokogiri
+    fastercsv (1.5.4)
+    method_source (0.8)
+    nokogiri (1.4.4)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
+    rake (10.0.2)
+    rb-readline (0.4.2)
+    shoulda (2.11.3)
+    slop (3.3.3)
+    trollop (1.16.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  equivalent-xml
+  fastercsv
+  nokogiri
+  pry
+  rake
+  rb-readline
+  shoulda
+  trollop
