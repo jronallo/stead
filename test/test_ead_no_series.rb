@@ -4,8 +4,8 @@ class TestSteadEadNoSeries < Test::Unit::TestCase
   include SteadTestHelpers
 
   def setup
-    @xsd = Nokogiri::XML::Schema(File.read(Stead.ead_schema))
-    #@template = Nokogiri::XML(File.read(Stead.ead_template))
+    # @xsd = Nokogiri::XML::Schema(File.read(Stead.ead_schema))
+
     @example = Nokogiri::XML(File.read(File.join(File.dirname(__FILE__),
           'container_lists', 'mc00000-ead.xml' )))
     @ead_generator = Stead::EadGenerator.from_csv(File.read(File.join(File.dirname(__FILE__),
@@ -43,9 +43,9 @@ class TestSteadEadNoSeries < Test::Unit::TestCase
     assert_equal 'Sessions 32-38', scopecontent
   end
 
-  def test_validity
-    assert @xsd.valid?(@generated_ead)
-  end
+  # def test_validity
+  #   assert @xsd.valid?(@generated_ead)
+  # end
 
   def test_internal_only
     assert_equal 'internal',

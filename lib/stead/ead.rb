@@ -54,7 +54,7 @@ module Stead
       if series?
         add_series
         add_subseries if subseries?
-      end      
+      end
       @component_parts.each do |cp|
         c = node(file_component_part_name(cp))
         c['level'] = 'file'
@@ -102,7 +102,7 @@ module Stead
         series_did.add_child(unitdate)
       end
     end
-    
+
     def add_subseries
       @component_parts.each do |cp|
         if !cp['subseries number'].nil?
@@ -130,7 +130,7 @@ module Stead
         end
       end
     end
-        
+
     def add_arrangement
       arrangement = node('arrangement')
       head = node('head')
@@ -174,8 +174,8 @@ module Stead
         return node.parent.parent if node.content == series_number
       end
     end
-    
-    def find_current_subseries(cp)      
+
+    def find_current_subseries(cp)
       @ead.xpath("//xmlns:c02/xmlns:did/xmlns:unitid[text()='#{cp['subseries number']}']").each do |node|
         return node.parent.parent if node.content == cp['subseries number']
       end
@@ -293,12 +293,7 @@ module Stead
 
     def csv_to_a
       a = []
-      if CSV.const_defined? :Reader
-        csv_class = FasterCSV # old CSV was loaded
-      else
-        csv_class = CSV # use CSV from 1.9
-      end
-      csv_class.parse(csv, :headers => :first_row) do |row|
+      CSV.parse(csv, :headers => :first_row) do |row|
         a << row.to_hash
       end
       if a.first.keys.include?(nil)
@@ -318,9 +313,11 @@ module Stead
     end
 
     def valid?
-      unless Stead.xsd.valid?(ead)
-        raise Stead::InvalidEad
-      end
+      # unless Stead.xsd.valid?(ead)
+      #   raise Stead::InvalidEad
+      # end
+      # We are removing this validity check since it needs the xsd which is offline when the federal government closes
+      true
     end
 
     def series?
@@ -334,13 +331,13 @@ module Stead
         return false if row['series number'].nil?
       end
     end
-    
+
     def subseries?
       if subseries_found?
         subseries = true
       end
     end
-    
+
     def subseries_found?
       @component_parts.each do |row|
         return true if !row['subseries number'].nil?

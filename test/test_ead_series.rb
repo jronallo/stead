@@ -4,14 +4,15 @@ class TestSteadEadSeries < Test::Unit::TestCase
   include SteadTestHelpers
 
   def setup
-    @xsd = Nokogiri::XML::Schema(File.read(Stead.ead_schema))
-    
+    # removing any test of validity since the federal government closed the Library of Congress
+    # @xsd = Nokogiri::XML::Schema(File.read(Stead.ead_schema))
+
     @example = Nokogiri::XML(File.read(File.join(File.dirname(__FILE__),
           'container_lists', 'mc00000-ead-series.xml' )))
     @ead_generator = Stead::EadGenerator.from_csv(File.read(File.join(File.dirname(__FILE__),
           'container_lists', 'mc00000_container_list.csv' )))
     @generated_ead = @ead_generator.to_ead
-    
+
     @did_xpath = '//xmlns:c02/xmlns:did'
   end
 
@@ -22,14 +23,14 @@ class TestSteadEadSeries < Test::Unit::TestCase
   def test_ead_c02_counts
     assert_equal 5, @generated_ead.xpath('//xmlns:c02').length
   end
-  
+
   def test_ead_c03_counts
     assert_equal 2, @generated_ead.xpath('//xmlns:c03').length
   end
 
-  def test_validity
-    assert @xsd.valid?(@generated_ead)
-  end
+  # def test_validity
+  #   assert @xsd.valid?(@generated_ead)
+  # end
 
   def test_created_ead_matches_example_content
     (0..4).each do |number|

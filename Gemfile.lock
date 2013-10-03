@@ -4,9 +4,10 @@ GEM
     coderay (1.0.8)
     equivalent-xml (0.1.6)
       nokogiri
-    fastercsv (1.5.4)
     method_source (0.8)
-    nokogiri (1.4.4)
+    mini_portile (0.5.1)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     pry (0.9.10)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -22,7 +23,6 @@ PLATFORMS
 
 DEPENDENCIES
   equivalent-xml
-  fastercsv
   nokogiri
   pry
   rake

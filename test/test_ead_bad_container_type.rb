@@ -23,14 +23,16 @@ class TestSteadErrors < Test::Unit::TestCase
 
   # create an invalid ead document so that we can test that validation of the ead
   # is working
-  def test_invalid_ead_error_message
-    assert_raise(Stead::InvalidEad) {
-      @ead_generator_good.to_ead
-      a = Nokogiri::XML::Node.new('asdfasd', @ead_generator_good.ead)
-      @ead_generator_good.ead.xpath('//xmlns:archdesc').first.add_child(a)
-      @ead_generator_good.valid?
-    }
-  end
+
+  # FIXME: had to disable validation since it relied on an exteral xsd
+  # def test_invalid_ead_error_message
+  #   assert_raise(Stead::InvalidEad) {
+  #     @ead_generator_good.to_ead
+  #     a = Nokogiri::XML::Node.new('asdfasd', @ead_generator_good.ead)
+  #     @ead_generator_good.ead.xpath('//xmlns:archdesc').first.add_child(a)
+  #     @ead_generator_good.valid?
+  #   }
+  # end
 
   def test_csv_with_nil_header
     assert_raise(Stead::InvalidCsv) {
