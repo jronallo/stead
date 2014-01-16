@@ -4,4 +4,5 @@ rvm:
   - "2.0.0"
   - "2.1.0"
 # uncomment this line if your project needs to run something other than `rake`:
-script: rake test
+script: bundle exec rake test
+install: travis_retry bundle install
