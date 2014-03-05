@@ -60,6 +60,10 @@ class TestSteadEadSeries < Test::Unit::TestCase
     assert_equal 'corpname_source', corpnames.first['source']
   end
 
+  def test_subseries_has_scopecontent
+    c02s = @generated_ead.xpath('//xmlns:c02[@level="subseries"]')
+    assert 'This is the subseries 1 scopecontent.', c02s.first.xpath('xmlns:scopecontent').first.content
+  end
 
 end
 

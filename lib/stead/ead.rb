@@ -117,6 +117,14 @@ module Stead
             # FIXME: DRY this up with add_series
             subseries_did = node('did')
             subseries_node.add_child(subseries_did)
+
+            if cp['subseries scopecontent']
+              subseries_scopecontent = node('scopecontent')
+              subseries_scopecontent.content = cp['subseries scopecontent']
+              subseries_node.add_child(subseries_scopecontent)
+            end
+
+
             unitid = node('unitid')
             unitid.content = cp['subseries number']
             unittitle = node('unittitle')
@@ -286,6 +294,7 @@ module Stead
         'file title' => 'unittitle',
         'file dates' => 'unitdate',
         'extent' => ['physdesc', 'extent'],
+        'physdesc' => 'physdesc',
         'note1' => ['note', 'p'],
         'note2' => ['note', 'p']
       }

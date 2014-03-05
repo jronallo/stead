@@ -85,5 +85,12 @@ class TestSteadEadNoSeries < Test::Unit::TestCase
     assert_equal '551', containers[1].content
   end
 
+  def test_physdesc
+    first_did = @generated_ead.xpath(@did_xpath).first
+    physdescs = first_did.xpath('xmlns:physdesc')
+    assert_equal 'extent', physdescs.first.content
+    assert_equal 'physdesc', physdescs.last.content
+  end
+
 end
 
