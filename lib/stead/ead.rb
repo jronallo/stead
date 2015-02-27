@@ -10,6 +10,7 @@ module Stead
       @base_url = opts[:base_url] if opts[:base_url]
       # component_parts are the rows in the csv file
       @component_parts = csv_to_a
+      @idcontainers = opts[:idcontainers]
     end
 
     def pick_template(opts)
@@ -218,6 +219,7 @@ module Stead
     end
 
     def add_containers(cp, did)
+      identifier = nil
       ['1', '2', '3'].each do |container_number|
         container_type = cp['container ' + container_number + ' type']
         container_number = cp['container ' + container_number + ' number']
@@ -234,6 +236,16 @@ module Stead
           container['type'] = container_type
           container['label'] = cp['instance type'] if cp['instance type']
           container.content = container_number
+
+          if @idcontainers
+            # if there is already an identifier then apply it as a parent attribute
+            if identifier
+              container['parent'] = identifier
+            end
+            identifier = stead_uuid
+            container['id'] = identifier
+          end
+
           did.add_child(container)
         end
       end
@@ -351,6 +363,14 @@ module Stead
       @component_parts.each do |row|
         return true if !row['subseries number'].nil?
       end
+    end
+
+    private
+
+    def stead_uuid
+      uuid = SecureRandom.uuid
+      cleaned_uuid = uuid.gsub('-', '')
+      "stead_#{cleaned_uuid}"
     end
 
   end

@@ -25,6 +25,7 @@ EOS
   opt :output, 'Save the file by specifying the filename', :type => String
   opt :pretty, 'If --output is specified this will pretty indent the container list.'
   opt :stdout, 'Output full EAD to terminal'
+  opt :idcontainers, 'Add id attributes to containers to show parent child relationships among containers in same component part.'
 end
 
 # unless opts[:output] or opts[:stdout]
@@ -45,6 +46,7 @@ ead_options = {}
 basename = File.basename(opts[:csv], '.csv')
 ead_options[:eadid] = basename.sub(/_container_list.*$/, '')
 ead_options[:base_url] = opts[:baseurl] if opts[:baseurl]
+ead_options[:idcontainers] = true if opts[:idcontainers]
 [:template, :url].each do |key|
   ead_options[key] = opts[key] if opts[key]
 end

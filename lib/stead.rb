@@ -46,6 +46,7 @@ end
 require 'rubygems'
 require 'nokogiri'
 require 'csv'
+require 'securerandom'
 
 require 'pp'
 
