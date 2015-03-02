@@ -1,21 +1,20 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    coderay (1.0.8)
+    coderay (1.1.0)
     equivalent-xml (0.1.6)
       nokogiri
-    method_source (0.8)
+    method_source (0.8.2)
     mini_portile (0.5.1)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
-    pry (0.9.10)
-      coderay (~> 1.0.5)
-      method_source (~> 0.8)
-      slop (~> 3.3.1)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rake (10.0.2)
-    rb-readline (0.4.2)
     shoulda (2.11.3)
-    slop (3.3.3)
+    slop (3.6.0)
     trollop (1.16.2)
 
 PLATFORMS
@@ -26,6 +25,5 @@ DEPENDENCIES
   nokogiri
   pry
   rake
-  rb-readline
   shoulda
   trollop

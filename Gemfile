@@ -17,5 +17,4 @@ end
 group :development, :test do
   gem 'pry'
   gem 'equivalent-xml'
-  gem 'rb-readline'
 end
