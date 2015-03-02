@@ -11,6 +11,9 @@ module Stead
       # component_parts are the rows in the csv file
       @component_parts = csv_to_a
       @idcontainers = opts[:idcontainers]
+      @unitid = opts[:unitid]
+      @extent = opts[:extent]
+      @unitdate = opts[:unitdate]
     end
 
     def pick_template(opts)
@@ -47,10 +50,35 @@ module Stead
       end
     end
 
+    def add_archdesc_unitid
+      if @unitid
+        # binding.pry
+        unitid_elem = @ead.xpath('//xmlns:archdesc/xmlns:did/xmlns:unitid').first
+        unitid_elem.content = @unitid
+      end
+    end
+
+    def add_archdesc_extent
+      if @extent
+        extent_elem = @ead.xpath('//xmlns:archdesc/xmlns:did/xmlns:physdesc/xmlns:extent').first
+        extent_elem.content = @extent
+      end
+    end
+
+    def add_archdesc_unitdate
+      if @unitdate
+        unitdate_elem = @ead.xpath('//xmlns:archdesc/xmlns:did/xmlns:unitdate').first
+        unitdate_elem.content = @unitdate
+      end
+    end
+
     def to_ead
       @ead = template.dup
       add_eadid
       add_eadid_url
+      add_archdesc_unitid
+      add_archdesc_extent
+      add_archdesc_unitdate
       @dsc = @ead.xpath('//xmlns:archdesc/xmlns:dsc')[0]
       if series?
         add_series

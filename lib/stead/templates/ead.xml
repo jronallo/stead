@@ -28,7 +28,10 @@
       <langmaterial>
         <language langcode="eng"/>
       </langmaterial>
-
+      <physdesc>
+        <extent></extent>
+      </physdesc>
+      <unitdate></unitdate>
     </did>
     <accessrestrict >
       <head>Access to Collection</head>
