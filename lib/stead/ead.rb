@@ -85,17 +85,22 @@ module Stead
         add_subseries if subseries?
       end
       @component_parts.each do |cp|
-        c = node(file_component_part_name(cp))
-        c['level'] = 'file'
-        c['audience'] = 'internal' if !cp['internal only'].nil?
-        did = node('did')
-        c.add_child(did)
-        add_did_nodes(cp, did)
-        add_containers(cp, did)
-        add_scopecontent(cp, did)
-        add_accessrestrict(cp, did)
-        add_controlaccess(cp, c)
-        add_file_component_part(cp, c)
+        begin
+          c = node(file_component_part_name(cp))
+          c['level'] = 'file'
+          c['audience'] = 'internal' if !cp['internal only'].nil?
+          did = node('did')
+          c.add_child(did)
+          add_did_nodes(cp, did)
+          add_containers(cp, did)
+          add_scopecontent(cp, did)
+          add_accessrestrict(cp, did)
+          add_controlaccess(cp, c)
+          add_file_component_part(cp, c)
+        rescue => e
+          binding.pry if DEBUG_STEAD
+          raise e
+        end
       end
       begin
         valid?
@@ -403,4 +408,3 @@ module Stead
 
   end
 end
-
