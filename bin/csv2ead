@@ -39,6 +39,8 @@ end
 if opts[:debug]
   require 'pry'
   DEBUG_STEAD = true
+else
+  DEBUG_STEAD = false
 end
 
 if opts[:ncsu]
