@@ -1,6 +1,8 @@
 $:.unshift(File.dirname(__FILE__)) unless
 $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
+DEBUG_STEAD=false
+
 module Stead
   CONTAINER_TYPES = [
     "album",
@@ -53,4 +55,3 @@ require 'pp'
 require 'stead/stead'
 require 'stead/ead'
 require 'stead/error'
-
