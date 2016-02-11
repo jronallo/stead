@@ -15,6 +15,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'test-unit'
   gem 'pry'
   gem 'equivalent-xml'
 end
